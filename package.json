@@ -10,7 +10,8 @@
   "author": "Igor <dont@bzzr.me> (https://ignorethis.page/)",
   "license": "AGPL-3.0",
   "devDependencies": {
-    "tsx": "4.1.1"
+    "tsx": "4.1.1",
+    "typescript": "5.2.2"
   },
   "dependencies": {
     "@hono/node-server": "1.2.2",
