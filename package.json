@@ -5,16 +5,23 @@
   "main": "src/main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsx src/main.ts"
+    "start": "tsx src/main.ts",
+    "prepare": "husky install"
   },
   "author": "Igor <dont@bzzr.me> (https://ignorethis.page/)",
   "license": "AGPL-3.0",
   "devDependencies": {
+    "husky": "8.0.3",
+    "lint-staged": "15.1.0",
+    "prettier": "3.1.0",
     "tsx": "4.1.1",
     "typescript": "5.2.2"
   },
   "dependencies": {
     "@hono/node-server": "1.2.2",
     "hono": "3.10.0"
+  },
+  "lint-staged": {
+    "*.ts": "prettier --write"
   }
 }
