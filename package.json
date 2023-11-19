@@ -2,11 +2,11 @@
   "name": "basictodo",
   "version": "0.0.1",
   "description": "Yet another ToDo application",
-  "main": "src/main.ts",
+  "main": "src/main.tsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsx src/main.ts",
-    "prepare": "husky install"
+    "start": "tsx --watch src/main.tsx",
+    "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\""
   },
   "author": "Igor <dont@bzzr.me> (https://ignorethis.page/)",
   "license": "AGPL-3.0",
