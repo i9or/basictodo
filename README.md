@@ -5,9 +5,9 @@ Yet another ToDo list web application.
 ## Tech Stack
 
 * Node.js
-* PostgreSQL
+* TypeScript
+* PostgresSQL
 * Hono
 * HTMX
 * Slonik
-* TailwindCSS
-* TypeScript
+* Bootstrap 5
