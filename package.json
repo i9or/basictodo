@@ -2,18 +2,26 @@
   "name": "basictodo",
   "version": "0.0.1",
   "description": "Yet another ToDo application",
-  "main": "src/main.ts",
+  "main": "src/main.tsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsx src/main.ts"
+    "start": "tsx --watch src/main.tsx",
+    "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\""
   },
   "author": "Igor <dont@bzzr.me> (https://ignorethis.page/)",
   "license": "AGPL-3.0",
   "devDependencies": {
-    "tsx": "4.1.1"
+    "husky": "8.0.3",
+    "lint-staged": "15.1.0",
+    "prettier": "3.1.0",
+    "tsx": "4.1.1",
+    "typescript": "5.2.2"
   },
   "dependencies": {
     "@hono/node-server": "1.2.2",
     "hono": "3.10.0"
+  },
+  "lint-staged": {
+    "*.ts": "prettier --write"
   }
 }
