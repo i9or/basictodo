@@ -7,12 +7,14 @@
     "dev": "bun --watch src/main.ts"
   },
   "devDependencies": {
-    "@types/bun": "1.0.2"
+    "@types/bun": "1.0.2",
+    "drizzle-kit": "0.20.13"
   },
   "peerDependencies": {
     "typescript": "5.3.3"
   },
   "dependencies": {
+    "drizzle-orm": "0.29.3",
     "hono": "3.12.6"
   }
 }
