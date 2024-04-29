@@ -22,6 +22,7 @@ export const Layout = ({ title, children }: LayoutProps) => {
       </head>
       <body class="bg-amber-50 dark:bg-slate-800">
         ${children}
+      <script src="/public/js/htmx.min.js"></script>
       </body>
     </html>`;
 };
