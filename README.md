@@ -24,7 +24,7 @@ bun install
 Development:
 
 ```bash
-bun run dev
+bun run watch
 ```
 
 Production
