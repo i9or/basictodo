@@ -1,15 +1,40 @@
-# Basic ToDo
+# BasicTODO
 
-To install dependencies:
+<img src="public/images/logo.svg" width="100">
+
+Yet another implementation of the production ready TODO list web application using modern JavaScript tech stack.
+
+## Tech Stack
+
+- Bun
+- Hono
+- htmx
+- Drizzle ORM
+- SQLite
+- TailwindCSS
+
+## Setup
 
 ```bash
 bun install
 ```
 
-To run:
+# Run
+
+Development:
+
+```bash
+bun run dev
+```
+
+Production
 
 ```bash
 bun run prod
 ```
 
-This project was created using `bun init` in bun v1.0.22. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+## License
+
+Code is distributed under the GNU AFFERO GENERAL PUBLIC LICENSE Version 3 only.
+
+<img src="./AGPLv3_Logo.svg" width="100" alt="AGPLv3 Logo"/>

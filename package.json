@@ -1,21 +1,26 @@
 {
   "name": "basictodo",
-  "module": "src/main.ts",
+  "module": "src/main.tsx",
   "type": "module",
   "scripts": {
-    "prod": "bun run src/main.ts",
-    "dev": "bun --watch src/main.ts"
+    "start": "bun run src/main.tsx",
+    "watch:ts": "bun --watch src/main.tsx",
+    "watch:css": "cross-env BROWSERSLIST_IGNORE_OLD_DATA=true bun x tailwindcss -i ./src/styles/main.css -o ./public/css/main.css --watch",
+    "watch": "concurrently \"bun:watch:*\""
   },
   "devDependencies": {
-    "@types/bun": "1.0.2",
-    "drizzle-kit": "0.20.13",
-    "prettier": "3.2.4"
+    "@types/bun": "1.1.0",
+    "concurrently": "8.2.2",
+    "cross-env": "7.0.3",
+    "drizzle-kit": "0.20.17",
+    "prettier": "3.2.5",
+    "tailwindcss": "3.4.3"
   },
   "peerDependencies": {
-    "typescript": "5.3.3"
+    "typescript": "5.4.5"
   },
   "dependencies": {
-    "drizzle-orm": "0.29.3",
-    "hono": "3.12.6"
+    "drizzle-orm": "0.30.8",
+    "hono": "4.2.5"
   }
 }
