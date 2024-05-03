@@ -4,17 +4,12 @@
   "type": "module",
   "scripts": {
     "start": "bun run src/main.tsx",
-    "watch:ts": "bun --watch src/main.tsx",
-    "watch:css": "cross-env BROWSERSLIST_IGNORE_OLD_DATA=true bun x tailwindcss -i ./src/styles/main.css -o ./public/css/main.css --watch",
-    "watch": "concurrently \"bun:watch:*\""
+    "watch": "bun --watch src/main.tsx"
   },
   "devDependencies": {
     "@types/bun": "1.1.0",
-    "concurrently": "8.2.2",
-    "cross-env": "7.0.3",
     "drizzle-kit": "0.20.17",
-    "prettier": "3.2.5",
-    "tailwindcss": "3.4.3"
+    "prettier": "3.2.5"
   },
   "peerDependencies": {
     "typescript": "5.4.5"
