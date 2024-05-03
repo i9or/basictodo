@@ -11,7 +11,7 @@ Yet another implementation of the production ready TODO list web application usi
 - htmx
 - Drizzle ORM
 - SQLite
-- TailwindCSS
+- Bootstrap
 
 ## Setup
 
