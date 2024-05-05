@@ -1,17 +1,23 @@
-import { html } from "hono/html";
+import { html, raw } from "hono/html";
+import { DevelopmentScripts } from "./DevelopmentScripts.ts";
 
 type LayoutProps = {
   title?: string;
   children?: any;
+  /**
+   * Body tag class
+   */
+  className?: string;
 };
 
 const WEBSITE_NAME = "BasicTODO";
 
-export const Layout = ({ title, children }: LayoutProps) => {
+export const Layout = ({ title, children, className }: LayoutProps) => {
   const resolvedTitle = title ? `${title} | ${WEBSITE_NAME}` : WEBSITE_NAME;
+  const bodyClassName = className ? raw(`class="${className}"`) : "";
 
   return html`<!doctype html>
-    <html lang="en">
+    <html lang="en" data-bs-theme="dark">
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,7 +32,7 @@ export const Layout = ({ title, children }: LayoutProps) => {
         <link rel="icon" href="/public/images/logo.svg" />
         <title>${resolvedTitle}</title>
       </head>
-      <body class="bg-amber-50 dark:bg-slate-800">
+      <body ${bodyClassName}>
         ${children}
         <script
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -38,6 +44,7 @@ export const Layout = ({ title, children }: LayoutProps) => {
           integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
           crossorigin="anonymous"
         ></script>
+        ${DevelopmentScripts()}
       </body>
     </html>`;
 };

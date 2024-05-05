@@ -9,7 +9,8 @@
   "devDependencies": {
     "@types/bun": "1.1.0",
     "drizzle-kit": "0.20.17",
-    "prettier": "3.2.5"
+    "prettier": "3.2.5",
+    "ws": "8.17.0"
   },
   "peerDependencies": {
     "typescript": "5.4.5"
