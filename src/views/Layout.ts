@@ -17,7 +17,7 @@ export const Layout = ({ title, children, className }: LayoutProps) => {
   const bodyClassName = className ? raw(`class="${className}"`) : "";
 
   return html`<!doctype html>
-    <html lang="en" data-bs-theme="dark">
+    <html lang="en" data-bs-theme="light">
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
