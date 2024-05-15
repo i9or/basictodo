@@ -2,15 +2,16 @@ import { Hono } from "hono";
 import { serveStatic } from "hono/bun";
 import { sql } from "drizzle-orm";
 
-import { db } from "./db.ts";
 import { MainPage } from "./views/MainPage.tsx";
 import { SignInPage } from "./views/SignInPage.tsx";
+import { db } from "./db.ts";
 import { hotReload } from "./hotReload.ts";
 import { httpLogger } from "./middlewares/httpLogger.ts";
+import { logger } from "./utils/logger.ts";
 
 const query = sql`SELECT "hello world from SQLite" as text`;
 const result = db.get<{ text: string }>(query);
-console.info({ result });
+logger.debug({ result });
 
 const app = new Hono();
 
@@ -26,4 +27,4 @@ const server = Bun.serve({
 
 hotReload();
 
-console.info(`[DEV] 🌭 Listening on ${server.url}`);
+logger.info(`[DEV] 🌭 Listening on ${server.url}`);

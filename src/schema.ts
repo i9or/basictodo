@@ -11,8 +11,8 @@ export const countries = sqliteTable(
     id: integer("id").primaryKey(),
     name: text("name").notNull(),
   },
-  (countries) => ({
-    nameIdx: uniqueIndex("nameIdx").on(countries.name),
+  (self) => ({
+    nameIdx: uniqueIndex("nameIdx").on(self.name),
   }),
 );
 

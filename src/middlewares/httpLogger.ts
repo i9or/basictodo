@@ -1,14 +1,23 @@
 import type { HonoRequest, MiddlewareHandler } from "hono";
 import { nanoid } from "nanoid";
-import { logger, type Severity } from "../utils/logger.ts";
+
+import {
+  HTTP_CLIENT_ERROR_CODES,
+  HTTP_SERVER_ERROR_CODES,
+  NOT_FOUND_INDEX,
+  ONE_SECOND_IN_MS,
+} from "../utils/constants.ts";
+import { type Severity, logger } from "../utils/logger.ts";
+
+const MINIMUM_POSITION = 8;
 
 const getRequestPath = (request: HonoRequest) => {
   const url = request.url;
-  const queryIndex = url.indexOf("?", 8);
+  const queryIndex = url.indexOf("?", MINIMUM_POSITION);
 
   return url.slice(
-    url.indexOf("/", 8),
-    queryIndex === -1 ? void 0 : queryIndex,
+    url.indexOf("/", MINIMUM_POSITION),
+    queryIndex === NOT_FOUND_INDEX ? undefined : queryIndex,
   );
 };
 
@@ -27,7 +36,9 @@ const elapsedFormatted = (start: number) => {
   const delta = Date.now() - start;
 
   return humanize([
-    delta < 1000 ? `${delta}ms` : `${Math.round(delta / 1000)}s`,
+    delta < ONE_SECOND_IN_MS
+      ? `${delta}ms`
+      : `${Math.round(delta / ONE_SECOND_IN_MS)}s`,
   ]);
 };
 
@@ -58,9 +69,9 @@ export const httpLogger = (): MiddlewareHandler => {
     let severity: Severity = "info";
     const { status, headers } = c.res;
 
-    if (status >= 400 && status < 500) {
+    if (status >= HTTP_CLIENT_ERROR_CODES && status < HTTP_SERVER_ERROR_CODES) {
       severity = "error";
-    } else if (status >= 500) {
+    } else if (status >= HTTP_SERVER_ERROR_CODES) {
       severity = "fatal";
     }
 
