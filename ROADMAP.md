@@ -5,10 +5,10 @@
 - [x] Add web framework (Hono)
 - [x] Add DB ORM (Drizzle)
 - [ ] Code quality
-  - [ ] Add ESLint
-    - [ ] Add imports sorting
+  - [x] Add ESLint
+    - [x] Add imports sorting
   - [x] Add Prettier
-  - [ ] Integrate test runner (Bun?)
+  - [x] Integrate Bun test runner
 - [x] Add Bootstrap
 - [x] Add htmx
 - [ ] Add authentication

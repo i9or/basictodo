@@ -1,6 +1,7 @@
-import eslintConfigPrettier from "eslint-config-prettier";
-import globals from "globals";
 import pluginJs from "@eslint/js";
+import eslintConfigPrettier from "eslint-config-prettier";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
+import globals from "globals";
 import tsEslint from "typescript-eslint";
 
 const MAX_CODE_COMPLEXITY = 5;
@@ -17,6 +18,9 @@ export default [
   pluginJs.configs.recommended,
   ...tsEslint.configs.recommended,
   {
+    plugins: {
+      "simple-import-sort": simpleImportSort,
+    },
     rules: {
       camelcase: "error",
       "capitalized-comments": "error",
@@ -40,12 +44,8 @@ export default [
       "prefer-const": "error",
       "require-atomic-updates": "error",
       "require-await": "error",
-      "sort-imports": [
-        "error",
-        {
-          allowSeparatedGroups: true,
-        },
-      ],
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error",
       yoda: "error",
     },
   },

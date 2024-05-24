@@ -1,6 +1,6 @@
 import { WebSocketServer } from "ws";
 
-import { logger } from "./utils/logger.ts";
+import { logger } from "~/utils/logger.ts";
 
 export const hotReload = () => {
   logger.info("[DEV] Notifying clients to reload...");

@@ -1,13 +1,13 @@
+import { sql } from "drizzle-orm";
 import { Hono } from "hono";
 import { serveStatic } from "hono/bun";
-import { sql } from "drizzle-orm";
 
-import { MainPage } from "./views/MainPage.tsx";
-import { SignInPage } from "./views/SignInPage.tsx";
-import { db } from "./db.ts";
-import { hotReload } from "./hotReload.ts";
-import { httpLogger } from "./middlewares/httpLogger.ts";
-import { logger } from "./utils/logger.ts";
+import { db } from "~/db.ts";
+import { hotReload } from "~/hotReload.ts";
+import { httpLogger } from "~/middlewares/httpLogger.ts";
+import { logger } from "~/utils/logger.ts";
+import { MainPage } from "~/views/MainPage.tsx";
+import { SignInPage } from "~/views/SignInPage.tsx";
 
 const query = sql`SELECT "hello world from SQLite" as text`;
 const result = db.get<{ text: string }>(query);

@@ -7,6 +7,9 @@
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
     "allowJs": true,
+    "paths": {
+      "~/*": ["./src/*"]
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",
