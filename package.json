@@ -5,10 +5,11 @@
   "scripts": {
     "start": "NODE_ENV=production bun run src/main.tsx",
     "watch": "NODE_ENV=deveopment bun --hot src/main.tsx",
-    "lint": "eslint --fix .",
-    "lint:ci": "eslint .",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "test": "NODE_ENV=test bun test",
-    "test:coverage": "NODE_ENV=test bun test --coverage"
+    "test:coverage": "NODE_ENV=test bun test --coverage",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@eslint/js": "9.2.0",
@@ -18,6 +19,7 @@
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-simple-import-sort": "12.1.0",
     "globals": "15.2.0",
+    "husky": "9.0.11",
     "pino-pretty": "11.0.0",
     "prettier": "3.2.5",
     "typed-htmx": "0.2.3",
