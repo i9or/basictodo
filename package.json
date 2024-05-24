@@ -3,15 +3,28 @@
   "module": "src/main.tsx",
   "type": "module",
   "scripts": {
-    "start": "bun run src/main.tsx",
-    "watch": "bun --hot src/main.tsx"
+    "start": "NODE_ENV=production bun run src/main.tsx",
+    "watch": "NODE_ENV=deveopment bun --hot src/main.tsx",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "test": "NODE_ENV=test bun test",
+    "test:coverage": "NODE_ENV=test bun test --coverage",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "@eslint/js": "9.2.0",
     "@types/bun": "1.1.0",
     "drizzle-kit": "0.20.17",
+    "eslint": "8.57.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-simple-import-sort": "12.1.0",
+    "globals": "15.2.0",
+    "husky": "9.0.11",
+    "lint-staged": "15.2.4",
     "pino-pretty": "11.0.0",
     "prettier": "3.2.5",
     "typed-htmx": "0.2.3",
+    "typescript-eslint": "7.9.0",
     "ws": "8.17.0"
   },
   "peerDependencies": {

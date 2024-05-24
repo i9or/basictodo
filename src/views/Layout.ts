@@ -1,9 +1,10 @@
 import { html, raw } from "hono/html";
+
 import { DevelopmentScripts } from "./DevelopmentScripts.ts";
 
 type LayoutProps = {
   title?: string;
-  children?: any;
+  children?: unknown;
   /**
    * Body tag class
    */
