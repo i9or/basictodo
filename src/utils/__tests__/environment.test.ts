@@ -1,6 +1,6 @@
 import { afterAll, describe, expect, test } from "bun:test";
 
-import { isDevelopment, isProduction } from "~/utils/environment.ts";
+import { isDevelopment, isProduction } from "~/utils/environment";
 
 describe("Environment", () => {
   afterAll(() => {

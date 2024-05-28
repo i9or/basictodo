@@ -1,5 +1,8 @@
 import { html, raw } from "hono/html";
 
+import { WEBSITE_NAME } from "~/utils/constants.ts";
+import { isDevelopment } from "~/utils/environment.ts";
+
 import { DevelopmentScripts } from "./DevelopmentScripts.ts";
 
 type LayoutProps = {
@@ -10,8 +13,6 @@ type LayoutProps = {
    */
   className?: string;
 };
-
-const WEBSITE_NAME = "BasicTODO";
 
 export const Layout = ({ title, children, className }: LayoutProps) => {
   const resolvedTitle = title ? `${title} | ${WEBSITE_NAME}` : WEBSITE_NAME;
@@ -45,7 +46,7 @@ export const Layout = ({ title, children, className }: LayoutProps) => {
           integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
           crossorigin="anonymous"
         ></script>
-        ${DevelopmentScripts()}
+        ${isDevelopment() ? DevelopmentScripts() : ""}
       </body>
     </html>`;
 };

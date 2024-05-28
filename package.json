@@ -3,13 +3,13 @@
   "module": "src/main.tsx",
   "type": "module",
   "scripts": {
-    "start": "NODE_ENV=production bun run src/main.tsx",
-    "watch": "NODE_ENV=deveopment bun --hot src/main.tsx",
+    "start": "bun run src/main.tsx",
+    "watch": "bun --hot src/main.tsx",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "NODE_ENV=test bun test",
     "test:coverage": "NODE_ENV=test bun test --coverage",
-    "prepare": "husky"
+    "prepare": "bun .husky/install.mjs"
   },
   "devDependencies": {
     "@eslint/js": "9.2.0",

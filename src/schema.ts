@@ -5,21 +5,24 @@ import {
   uniqueIndex,
 } from "drizzle-orm/sqlite-core";
 
-export const countries = sqliteTable(
-  "countries",
+export const lists = sqliteTable("lists", {
+  id: integer("id").primaryKey(),
+  name: text("name"),
+});
+
+export const tasks = sqliteTable(
+  "tasks",
   {
     id: integer("id").primaryKey(),
-    name: text("name").notNull(),
+    summary: text("summary").notNull(),
+    listId: integer("list_id")
+      .references(() => lists.id)
+      .notNull(),
   },
   (self) => ({
-    nameIdx: uniqueIndex("nameIdx").on(self.name),
+    summaryIdx: uniqueIndex("nameIdx").on(self.summary),
   }),
 );
 
-export const cities = sqliteTable("cities", {
-  id: integer("id").primaryKey(),
-  name: text("name"),
-  countryId: integer("country_id").references(() => countries.id),
-});
-
-export type Country = typeof countries.$inferSelect;
+export type List = typeof lists.$inferSelect;
+export type Task = typeof tasks.$inferSelect;
