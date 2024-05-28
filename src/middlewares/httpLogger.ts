@@ -6,8 +6,8 @@ import {
   HTTP_SERVER_ERROR_CODES,
   NOT_FOUND_INDEX,
   ONE_SECOND_IN_MS,
-} from "~/utils/constants.ts";
-import { logger,type Severity } from "~/utils/logger.ts";
+} from "~/utils/constants";
+import { logger, type Severity } from "~/utils/logger";
 
 const MINIMUM_POSITION = 8;
 

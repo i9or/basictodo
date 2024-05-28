@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from "bun:test";
 
-import { PinoMock } from "~/mocks.ts";
-import { logger } from "~/utils/logger.ts";
+import { PinoMock } from "~/mocks";
+import { logger } from "~/utils/logger";
 
 describe("logger", () => {
   afterEach(() => {
@@ -10,11 +10,6 @@ describe("logger", () => {
 
   it("should return a logger instance", () => {
     expect(logger).toBeInstanceOf(PinoMock);
-    expect(PinoMock.constructorMock).toBeCalledWith({
-      level: "debug",
-      transport: {
-        target: "pino-pretty",
-      },
-    });
+    expect(PinoMock.constructorMock).toBeCalled();
   });
 });

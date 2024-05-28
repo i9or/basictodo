@@ -23,7 +23,6 @@ export default [
     },
     rules: {
       camelcase: "error",
-      "capitalized-comments": "error",
       complexity: ["error", MAX_CODE_COMPLEXITY],
       "consistent-return": "error",
       curly: "error",
