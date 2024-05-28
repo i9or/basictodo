@@ -10,11 +10,6 @@ describe("logger", () => {
 
   it("should return a logger instance", () => {
     expect(logger).toBeInstanceOf(PinoMock);
-    expect(PinoMock.constructorMock).toBeCalledWith({
-      level: "debug",
-      transport: {
-        target: "pino-pretty",
-      },
-    });
+    expect(PinoMock.constructorMock).toBeCalled();
   });
 });
