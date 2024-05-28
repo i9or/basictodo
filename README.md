@@ -2,7 +2,7 @@
 
 <img src="public/images/logo.svg" width="100">
 
-Yet another implementation of the production ready TODO list web application using modern JavaScript tech stack.
+Yet another implementation of the production ready to-do list web application using modern JavaScript tech stack.
 
 ## Tech Stack
 
