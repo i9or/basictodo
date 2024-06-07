@@ -5,9 +5,9 @@ import {
   uniqueIndex,
 } from "drizzle-orm/sqlite-core";
 
-export const lists = sqliteTable("lists", {
+export const taskLists = sqliteTable("task_lists", {
   id: integer("id").primaryKey(),
-  name: text("name"),
+  name: text("name").notNull(),
 });
 
 export const tasks = sqliteTable(
@@ -15,14 +15,17 @@ export const tasks = sqliteTable(
   {
     id: integer("id").primaryKey(),
     summary: text("summary").notNull(),
+    completed: integer("completed", { mode: "boolean" })
+      .default(false)
+      .notNull(),
     listId: integer("list_id")
-      .references(() => lists.id)
+      .references(() => taskLists.id)
       .notNull(),
   },
   (self) => ({
-    summaryIdx: uniqueIndex("nameIdx").on(self.summary),
+    summaryIndex: uniqueIndex("summary_index").on(self.summary),
   }),
 );
 
-export type List = typeof lists.$inferSelect;
+export type TaskList = typeof taskLists.$inferSelect;
 export type Task = typeof tasks.$inferSelect;

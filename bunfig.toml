@@ -2,5 +2,5 @@
 exact = true
 
 [test]
-preload = ["./src/mocks"]
+preload = ["./src/testUtils/mocks"]
 coverageThreshold = 0.8

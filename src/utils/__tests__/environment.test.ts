@@ -1,6 +1,6 @@
 import { describe, expect, mock, test } from "bun:test";
 
-import { isDevelopment, isProduction } from "~/utils/environment";
+import { isDevelopment, isProduction } from "~/utils/environment.ts";
 
 describe("Environment", () => {
   test("production environment", () => {
