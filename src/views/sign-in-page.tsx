@@ -1,7 +1,8 @@
-import type { SignInFormData } from "~/schemas/user.ts";
-import { DangerAlert } from "~/views/components/danger-alert.tsx";
+import type { SignInFormData } from "~/schemas/user-schemas";
+import { notNullNorUndefined } from "~/utils/predicates";
+import { DangerAlert } from "~/views/components/danger-alert";
 
-import { Layout } from "./layout.ts";
+import { Layout } from "./layout";
 
 type Props = {
   isWrongCredentials?: boolean;
@@ -14,7 +15,7 @@ export const SignInPage = ({ isWrongCredentials, formData }: Props) => (
     title="Sign In"
   >
     <main class="sign-in-form-container m-auto">
-      <form action="/sign-in" method="POST">
+      <form action="/sign-in" method="post">
         <div class="row g-3">
           <img
             class="align-self-center mb-4"
@@ -61,7 +62,11 @@ export const SignInPage = ({ isWrongCredentials, formData }: Props) => (
                 class="form-check-input"
                 type="checkbox"
                 name="rememberMe"
-                checked={formData?.rememberMe === "on"}
+                checked={
+                  notNullNorUndefined(formData)
+                    ? formData.rememberMe === "on"
+                    : true
+                }
               />
               <label class="form-check-label" for="rememberMeCheckbox">
                 Remember me

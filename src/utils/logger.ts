@@ -2,7 +2,7 @@ import pino from "pino";
 
 import { isDevelopment, isProduction } from "~/utils/environment.ts";
 
-export type Severity = "info" | "warn" | "error" | "fatal" | "debug" | "trace";
+export type Severity = "fatal" | "error" | "warn" | "info" | "debug" | "trace";
 
 export const logger = pino({
   level: isProduction() ? "warn" : "info",

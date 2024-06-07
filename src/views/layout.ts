@@ -1,9 +1,9 @@
 import { html, raw } from "hono/html";
 
-import { WEBSITE_NAME } from "~/constants.ts";
-import { isDevelopment } from "~/utils/environment.ts";
+import { WEBSITE_NAME } from "~/constants";
+import { isDevelopment } from "~/utils/environment";
 
-import { DevelopmentScripts } from "./development-scripts.ts";
+import { DevelopmentScripts } from "./development-scripts";
 
 type LayoutProps = {
   title?: string;

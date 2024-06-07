@@ -1,6 +1,6 @@
 import { ZodError } from "zod";
 
-import { getKeys } from "~/utils/get-keys.ts";
+import { getKeys } from "~/utils/get-keys";
 
 export const resolveInvalidFields = <T>(err: ZodError<T>) => {
   return new Set(getKeys(err.flatten().fieldErrors));

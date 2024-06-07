@@ -1,8 +1,8 @@
 import { Database } from "bun:sqlite";
 
-import { ENV } from "~/env.ts";
-import { logger } from "~/utils/logger.ts";
+import { ENV } from "~/env";
+import { logger } from "~/utils/logger";
 
-logger.info(`Using database: ${ENV.dbPath}`);
+logger.debug(`Using database: ${ENV.dbPath}`);
 
 export const db = new Database(ENV.dbPath, { create: true, strict: true });

@@ -1,4 +1,4 @@
-import { db } from "~/db.ts";
+import { db } from "~/db";
 
 type InsertNewUserParams = {
   email: string;
@@ -18,10 +18,12 @@ export const insertNewUser = ({
   firstName,
   lastName,
 }: InsertNewUserParams) => {
-  insertNewUserQuery.run({
+  const { lastInsertRowid } = insertNewUserQuery.run({
     email,
     password,
     firstName,
     lastName,
   });
+
+  return lastInsertRowid;
 };

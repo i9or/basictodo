@@ -1,11 +1,12 @@
 import { Hono } from "hono";
 
-import { MainPage } from "~/views/main-page.tsx";
-import { PrivacyPolicyPage } from "~/views/privacy-policy-page.tsx";
-import { TermsOfUsePage } from "~/views/terms-of-use-page.tsx";
+import { HOME_ROUTE } from "~/routers/routes";
+import { MainPage } from "~/views/main-page";
+import { PrivacyPolicyPage } from "~/views/privacy-policy-page";
+import { TermsOfUsePage } from "~/views/terms-of-use-page";
 
 export const homeRouter = new Hono()
-  .get("/", (c) => {
+  .get(HOME_ROUTE, (c) => {
     return c.html(<MainPage />);
   })
   .get("/terms-of-use", (c) => {

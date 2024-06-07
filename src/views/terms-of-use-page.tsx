@@ -1,4 +1,4 @@
-import { Layout } from "~/views/layout.ts";
+import { Layout } from "~/views/layout";
 
 export const TermsOfUsePage = () => {
   return (

@@ -1,21 +1,25 @@
 import { cx } from "hono/css";
 
-import type { SignUpFormData } from "~/schemas/user.ts";
-import { isInvalid } from "~/utils/form-validation.ts";
-import { DangerAlert } from "~/views/components/danger-alert.tsx";
-import { Layout } from "~/views/layout.ts";
+import type { SignUpFormData } from "~/schemas/user-schemas";
+import { isInvalid } from "~/utils/form-validation";
+import { DangerAlert } from "~/views/components/danger-alert";
+import { Layout } from "~/views/layout";
 
 type Props = {
   formData?: SignUpFormData;
   invalidFields?: Set<keyof SignUpFormData>;
-  isUserExist?: boolean;
+  isUserExists?: boolean;
 };
 
-export const SignUpPage = ({ formData, invalidFields, isUserExist }: Props) => {
+export const SignUpPage = ({
+  formData,
+  invalidFields,
+  isUserExists = false,
+}: Props) => {
   return (
     <Layout className="d-flex justify-content-center align-items-center py-4 bg-body-tertiary vw-100 vh-100">
       <main class="sign-up-form-container m-auto">
-        <form action="/sign-up" method="POST">
+        <form action="/sign-up" method="post">
           <div class="row g-3">
             <img
               class="align-self-center mb-4"
@@ -25,7 +29,7 @@ export const SignUpPage = ({ formData, invalidFields, isUserExist }: Props) => {
               alt="BasicTODO Logo"
             />
             <h1 class="fw-normal text-center mb-3">Create an Account</h1>
-            {isUserExist && (
+            {isUserExists && (
               <div class="col-12">
                 <DangerAlert message="Account with this email already exists." />
               </div>

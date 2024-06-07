@@ -1,4 +1,4 @@
-import { ENV } from "~/env.ts";
+import { ENV } from "~/env";
 
 export const isProduction = () => ENV.mode === "production";
 

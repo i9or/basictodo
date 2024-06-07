@@ -6,8 +6,8 @@ import {
   HTTP_SERVER_ERROR_CODES,
   NOT_FOUND_INDEX,
   ONE_SECOND_IN_MS,
-} from "~/constants.ts";
-import { logger, type Severity } from "~/utils/logger.ts";
+} from "~/constants";
+import { logger, type Severity } from "~/utils/logger";
 
 const MINIMUM_POSITION = 8;
 
@@ -47,7 +47,7 @@ export const httpLogger = (): MiddlewareHandler => {
     const { method } = c.req;
     const path = getRequestPath(c.req);
 
-    let severity: Severity = "debug";
+    let severity: Severity = "trace";
 
     logger[severity](
       {
