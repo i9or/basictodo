@@ -30,7 +30,6 @@ export default [
       eqeqeq: "error",
       "no-console": "error",
       "no-duplicate-imports": "error",
-      "no-magic-numbers": "error",
       "no-nested-ternary": "error",
       "no-param-reassign": "error",
       "no-return-assign": "error",
