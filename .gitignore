@@ -175,5 +175,4 @@ dist
 .DS_Store
 
 # Database
-db/*
-!db/.gitkeep
+db/main.db

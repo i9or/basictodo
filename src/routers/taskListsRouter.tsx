@@ -4,15 +4,9 @@ import { taskListsService } from "~/application.ts";
 import { isEmpty } from "~/utils/isEmpty.ts";
 import { TaskListsPage } from "~/views/TaskListsPage.tsx";
 
-// TODO: remove before merge
-const FIRST_USER_ID_FOR_NOW = 1;
-
-export const taskListsRouter = new Hono();
-
-taskListsRouter.get("/", async (c) => {
-  const taskLists = await taskListsService.getAllTaskLists(
-    FIRST_USER_ID_FOR_NOW,
-  );
+export const taskListsRouter = new Hono().get("/", async (c) => {
+  // TODO: User id should be retrieved from session
+  const taskLists = await taskListsService.getAllTaskLists(1);
 
   if (isEmpty(taskLists)) {
     return c.html("No task lists exist...");
