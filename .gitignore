@@ -176,4 +176,4 @@ dist
 .DS_Store
 
 # Database
-db/main.db
+db/main.db_bak

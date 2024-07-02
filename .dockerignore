@@ -11,7 +11,7 @@ LICENSE
 .lintstagedrc.json
 .idea
 .github
-db
+db/main.db_bak
 AGPLv3_Logo.svg
 eslint.config.mjs
 ROADMAP.md

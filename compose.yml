@@ -6,5 +6,22 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3000
+      - DB_PATH=/usr/db/main.sqlite
     volumes:
-      - ${DB_PATH}:/usr/db/main.sqlite
+      - ${SERVER_DB_FOLDER}:/usr/db
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+        restart: true
+        required: true
+
+  migrate:
+    build:
+      context: .
+      dockerfile: Dockerfile.migrate
+    command: ["bun", "db:migrate", "&&", "bun", "db:seed"]
+    environment:
+      - NODE_ENV=production
+      - DB_PATH=/usr/db/main.sqlite
+    volumes:
+      - ${SERVER_DB_FOLDER}:/usr/db
