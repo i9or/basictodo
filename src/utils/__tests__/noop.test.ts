@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
 
-import { noop } from "~/utils/noop";
+import { noop } from "~/utils/noop.ts";
 
 describe("noop", () => {
   it("should do nothing", () => {

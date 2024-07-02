@@ -6,6 +6,7 @@ Dockerfile*
 README.md
 LICENSE
 .env
+.env.production
 .editorconfig
 .lintstagedrc.json
 .idea

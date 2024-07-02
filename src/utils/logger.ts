@@ -1,6 +1,6 @@
 import pino from "pino";
 
-import { isDevelopment, isProduction } from "~/utils/environment";
+import { isDevelopment, isProduction } from "~/utils/environment.ts";
 
 export type Severity = "info" | "warn" | "error" | "fatal" | "debug" | "trace";
 

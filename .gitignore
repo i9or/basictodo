@@ -101,6 +101,7 @@ web_modules/
 # dotenv environment variable files
 
 .env
+.env.production
 .env.development.local
 .env.test.local
 .env.production.local
@@ -175,5 +176,4 @@ dist
 .DS_Store
 
 # Database
-db/*
-!db/.gitkeep
+db/main.db
