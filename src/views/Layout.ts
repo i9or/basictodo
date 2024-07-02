@@ -1,6 +1,6 @@
 import { html, raw } from "hono/html";
 
-import { WEBSITE_NAME } from "~/utils/constants.ts";
+import { WEBSITE_NAME } from "~/constants.ts";
 import { isDevelopment } from "~/utils/environment.ts";
 import { ThemeScript } from "~/views/ThemeScript.ts";
 

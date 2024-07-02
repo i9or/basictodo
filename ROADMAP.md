@@ -16,3 +16,8 @@
 - [ ] Add authentication
   - [ ] Add User entity 
   - [ ] Add sessions
+- [ ] Setup CI
+  - [x] Add test
+  - [x] Add build
+  - [x] Add Docker image build
+  - [ ] Add coverage reports on PR

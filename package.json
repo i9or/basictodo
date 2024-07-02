@@ -16,7 +16,7 @@
     "db:migrate": "bun ./db/migrate.ts",
     "db:drop": "drizzle-kit drop",
     "db:seed": "bun ./db/seed.ts",
-    "prepare": "bun .husky/install.mjs"
+    "prepare": "bun .husky/install.ts"
   },
   "devDependencies": {
     "@eslint/js": "9.2.0",

@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 
-import { HTTP_NOT_FOUND } from "~/utils/constants.ts";
+import { HTTP_NOT_FOUND } from "~/constants.ts";
 
 export const tasksRouter = new Hono().get("/", (c) => {
   c.status(HTTP_NOT_FOUND);

@@ -3,7 +3,7 @@ import { TaskListsRepository } from "~/repositories/TaskListsRepository.ts";
 import { TaskListsService } from "~/services/TaskListsService.ts";
 
 /**
- * Whole application explicit dependency injection module, where all entities
+ * Application explicit dependency injection module, where all entities
  * are instantiated and injected as dependencies
  */
 

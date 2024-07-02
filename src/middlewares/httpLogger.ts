@@ -6,7 +6,7 @@ import {
   HTTP_SERVER_ERROR_CODES,
   NOT_FOUND_INDEX,
   ONE_SECOND_IN_MS,
-} from "~/utils/constants.ts";
+} from "~/constants.ts";
 import { logger, type Severity } from "~/utils/logger.ts";
 
 const MINIMUM_POSITION = 8;
@@ -21,15 +21,12 @@ const getRequestPath = (request: HonoRequest) => {
   );
 };
 
-const DELIMITER = ",";
-const SEPARATOR = ".";
-
 const humanize = (times: string[]) => {
   const orderTimes = times.map((v) =>
-    v.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, `$1${DELIMITER}`),
+    v.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"),
   );
 
-  return orderTimes.join(SEPARATOR);
+  return orderTimes.join(".");
 };
 
 const elapsedFormatted = (start: number) => {
@@ -42,12 +39,10 @@ const elapsedFormatted = (start: number) => {
   ]);
 };
 
-export const LOG_ID = "logId";
-
 export const httpLogger = (): MiddlewareHandler => {
   return async function (c, next) {
     const logId = nanoid();
-    c.set(LOG_ID, logId);
+    c.set("logId", logId);
 
     const { method } = c.req;
     const path = getRequestPath(c.req);
