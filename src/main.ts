@@ -7,8 +7,6 @@ import { hotReload } from "~/hotReload.ts";
 import { httpLogger } from "~/middlewares/httpLogger.ts";
 import { authRouter } from "~/routers/authRouter.tsx";
 import { homeRouter } from "~/routers/homeRouter.tsx";
-import { taskListsRouter } from "~/routers/taskListsRouter.tsx";
-import { tasksRouter } from "~/routers/tasksRouter.tsx";
 import { isDevelopment } from "~/utils/environment.ts";
 import { logger } from "~/utils/logger.ts";
 import { Layout } from "~/views/Layout.ts";
@@ -18,8 +16,6 @@ const server = new Hono();
 server.use(httpLogger());
 server.use("/public/*", serveStatic({ root: "./" }));
 
-server.route("/task-lists", taskListsRouter);
-server.route("/tasks", tasksRouter);
 server.route("/", authRouter);
 server.route("/", homeRouter);
 

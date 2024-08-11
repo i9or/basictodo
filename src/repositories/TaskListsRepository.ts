@@ -1,12 +1,11 @@
-import { eq } from "drizzle-orm";
-import type { BunSQLiteDatabase } from "drizzle-orm/bun-sqlite";
-
-import { type TaskList, taskLists, type User } from "~/schema.ts";
+import type { Database } from "bun:sqlite";
 
 export class TaskListsRepository {
-  constructor(private db: BunSQLiteDatabase) {}
+  constructor(private db: Database) {}
 
-  getAllTaskLists = (userId: User["id"]): Promise<TaskList[]> => {
-    return this.db.select().from(taskLists).where(eq(taskLists.userId, userId));
+  // TODO: add proper types
+  getAllTaskLists = (userId: /*User["id"]*/ string): { name: string }[] => {
+    // return this.db.select().from(taskLists).where(eq(taskLists.userId, userId));
+    return [{ name: `some list for ${userId}` }];
   };
 }

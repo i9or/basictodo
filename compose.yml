@@ -19,7 +19,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.migrate
-    command: ["bun", "db:migrate", "&&", "bun", "db:seed"]
     environment:
       - NODE_ENV=production
       - DB_PATH=/usr/db/main.sqlite

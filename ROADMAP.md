@@ -3,21 +3,20 @@
 - [x] Start project with Bun
 - [x] Add TypeScript
 - [x] Add web framework (Hono)
-- [x] Add DB ORM (Drizzle)
+- [x] ~~Add DB ORM (Drizzle)~~
 - [x] Code quality
   - [x] Add ESLint
     - [x] Add imports sorting
   - [x] Add Prettier
   - [x] Integrate Bun test runner
-- [x] Add Bootstrap
+- [x] ~~Add Bootstrap~~
 - [x] Add htmx
-- [ ] Integrate ORM into project
-  - [ ] Update Docker configuration to support SQLite
 - [ ] Add authentication
   - [ ] Add User entity 
   - [ ] Add sessions
 - [ ] Setup CI
   - [x] Add test
   - [x] Add build
-  - [x] Add Docker image build
+  - [x] ~~Add Docker image build~~
   - [ ] Add coverage reports on PR
+- [ ] Add TailwindCSS

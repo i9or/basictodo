@@ -1,7 +1,5 @@
+import type { Database } from "bun:sqlite";
 import { describe, expect, it, mock } from "bun:test";
-import type { BunSQLiteDatabase } from "drizzle-orm/bun-sqlite";
-
-import type { TaskList } from "~/schema.ts";
 
 import { TaskListsRepository } from "../TaskListsRepository.ts";
 
@@ -21,10 +19,10 @@ describe("TaskListsRepository", () => {
   it("should return all the task lists", async () => {
     const dbMock = new DbMock();
     const taskListsRepository = new TaskListsRepository(
-      dbMock as unknown as BunSQLiteDatabase,
+      dbMock as unknown as Database,
     );
 
-    expect(await taskListsRepository.getAllTaskLists(1)).toStrictEqual([
+    expect(taskListsRepository.getAllTaskLists("1")).toStrictEqual([
       {
         userId: 1,
         id: 1,

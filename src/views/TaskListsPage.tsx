@@ -1,9 +1,8 @@
-import type { TaskList } from "~/schema.ts";
-
 import { Layout } from "./Layout.ts";
 
 type ListsPageProps = {
-  taskLists: TaskList[];
+  // TODO: add proper type
+  taskLists: { name: string }[];
 };
 
 export const TaskListsPage = ({ taskLists }: ListsPageProps) => (

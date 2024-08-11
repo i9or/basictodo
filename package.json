@@ -6,42 +6,39 @@
     "start": "bun src/main.ts",
     "watch:server": "bun --hot --no-clear-screen src/main.ts",
     "watch:types": "bun run type-check --watch --preserveWatchOutput",
-    "watch": "concurrently --names \"SERVER,TYPES\" -c \"green.bold,blue.bold\" \"bun:watch:server\" \"bun:watch:types\"",
+    "watch:styles": "bun run tailwindcss -i ./src/styles.css -o ./public/css/main.css --watch",
+    "watch": "concurrently --names \"SERVER,TYPES,STYLES\" -c \"green.bold,blue.bold,yellow.bold\" \"bun:watch:server\" \"bun:watch:types\" \"bun:watch:styles\"",
     "type-check": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "NODE_ENV=test bun test",
     "test:coverage": "NODE_ENV=test bun test --coverage",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "bun ./db/migrate.ts",
-    "db:drop": "drizzle-kit drop",
-    "db:seed": "bun ./db/seed.ts",
+    "db:migrate": "exit 1",
     "prepare": "bun .husky/install.ts"
   },
   "devDependencies": {
-    "@eslint/js": "9.2.0",
-    "@types/bun": "1.1.0",
+    "@eslint/js": "9.9.0",
+    "@types/bun": "1.1.6",
     "concurrently": "8.2.2",
-    "drizzle-kit": "0.22.0",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-simple-import-sort": "12.1.0",
-    "globals": "15.2.0",
-    "husky": "9.0.11",
-    "lint-staged": "15.2.4",
-    "pino-pretty": "11.0.0",
-    "prettier": "3.2.5",
-    "typed-htmx": "0.2.3",
-    "typescript-eslint": "7.9.0",
-    "ws": "8.17.0"
+    "eslint-plugin-simple-import-sort": "12.1.1",
+    "globals": "15.9.0",
+    "husky": "9.1.4",
+    "lint-staged": "15.2.8",
+    "pino-pretty": "11.2.2",
+    "prettier": "3.3.3",
+    "tailwindcss": "3.4.9",
+    "typed-htmx": "0.3.1",
+    "typescript-eslint": "7.18.0",
+    "ws": "8.18.0"
   },
   "peerDependencies": {
-    "typescript": "5.4.5"
+    "typescript": "5.5.4"
   },
   "dependencies": {
-    "drizzle-orm": "0.31.0",
-    "hono": "4.2.5",
+    "hono": "4.5.5",
     "nanoid": "5.0.7",
-    "pino": "9.0.0"
+    "pino": "9.3.2"
   }
 }

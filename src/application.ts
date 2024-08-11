@@ -1,4 +1,4 @@
-import { database } from "~/database.ts";
+import { db } from "~/db.ts";
 import { TaskListsRepository } from "~/repositories/TaskListsRepository.ts";
 import { TaskListsService } from "~/services/TaskListsService.ts";
 
@@ -8,7 +8,7 @@ import { TaskListsService } from "~/services/TaskListsService.ts";
  */
 
 // Repositories
-export const taskListsRepository = new TaskListsRepository(database);
+export const taskListsRepository = new TaskListsRepository(db);
 
 // Services
 export const taskListsService = new TaskListsService(taskListsRepository);

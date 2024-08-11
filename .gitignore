@@ -176,4 +176,9 @@ dist
 .DS_Store
 
 # Database
-db/main.db_bak
+db/*
+!db/.gitkeep
+
+# Styles
+public/css/*
+!public/css/.gitkeep
