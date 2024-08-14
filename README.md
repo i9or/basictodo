@@ -10,7 +10,7 @@ Yet another implementation of the production ready to-do list web application us
 - Hono
 - htmx
 - SQLite
-- TailwindCSS
+- Bootstrap
 
 ## Setup
 
