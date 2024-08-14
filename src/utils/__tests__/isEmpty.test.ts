@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
 
-import { isEmpty } from "~/utils/isEmpty.ts";
+import { isEmpty } from "~/utils/is-empty.ts";
 
 describe("isEmpty", () => {
   it("should return true if array is empty", () => {

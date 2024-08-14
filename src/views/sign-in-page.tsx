@@ -1,4 +1,4 @@
-import { Layout } from "./Layout.ts";
+import { Layout } from "./layout.ts";
 
 export const SignInPage = () => (
   <Layout className="d-flex justify-content-center align-items-center py-4 bg-body-tertiary vw-100 vh-100">

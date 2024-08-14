@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 
 import { logger } from "~/utils/logger.ts";
-import { SignInPage } from "~/views/SignInPage.tsx";
+import { SignInPage } from "~/views/sign-in-page.tsx";
 
 export const authRouter = new Hono()
   .get("/sign-in", (c) => {
