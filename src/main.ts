@@ -3,13 +3,13 @@ import { serveStatic } from "hono/bun";
 import { html } from "hono/html";
 
 import { ENV } from "~/env.ts";
-import { hotReload } from "~/hotReload.ts";
+import { hotReload } from "~/hot-reload.ts";
 import { httpLogger } from "~/middlewares/httpLogger.ts";
-import { authRouter } from "~/routers/authRouter.tsx";
-import { homeRouter } from "~/routers/homeRouter.tsx";
+import { authRouter } from "~/routers/auth-router.tsx";
+import { homeRouter } from "~/routers/home-router.tsx";
 import { isDevelopment } from "~/utils/environment.ts";
 import { logger } from "~/utils/logger.ts";
-import { Layout } from "~/views/Layout.ts";
+import { Layout } from "~/views/layout.ts";
 
 const server = new Hono();
 

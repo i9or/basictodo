@@ -178,7 +178,3 @@ dist
 # Database
 db/*
 !db/.gitkeep
-
-# Styles
-public/css/*
-!public/css/.gitkeep

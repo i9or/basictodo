@@ -3,13 +3,12 @@
 - [x] Start project with Bun
 - [x] Add TypeScript
 - [x] Add web framework (Hono)
-- [x] ~~Add DB ORM (Drizzle)~~
 - [x] Code quality
   - [x] Add ESLint
     - [x] Add imports sorting
   - [x] Add Prettier
   - [x] Integrate Bun test runner
-- [x] ~~Add Bootstrap~~
+- [x] Add Bootstrap
 - [x] Add htmx
 - [ ] Add authentication
   - [ ] Add User entity 
@@ -17,6 +16,7 @@
 - [ ] Setup CI
   - [x] Add test
   - [x] Add build
-  - [x] ~~Add Docker image build~~
   - [ ] Add coverage reports on PR
-- [ ] Add TailwindCSS
+- [ ] Add database migration script
+- [ ] Add migrations generation script
+- [ ] Extract migration scripts to a package

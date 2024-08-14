@@ -1,11 +1,11 @@
-import { Layout } from "./Layout.ts";
+import { Layout } from "./layout.ts";
 
 type ListsPageProps = {
   // TODO: add proper type
   taskLists: { name: string }[];
 };
 
-export const TaskListsPage = ({ taskLists }: ListsPageProps) => (
+export const ListsPage = ({ taskLists }: ListsPageProps) => (
   <Layout>
     <main class="vw-100 vh-100 d-flex">
       <ul>
