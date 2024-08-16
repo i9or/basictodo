@@ -2,7 +2,7 @@ import { Layout } from "./layout.ts";
 
 export const SignInPage = () => (
   <Layout className="d-flex justify-content-center align-items-center py-4 bg-body-tertiary vw-100 vh-100">
-    <main class="sign-in-form-container w-100 m-auto">
+    <main class="sign-in-form-container m-auto">
       <form class="d-flex flex-column" action="/sign-in" method="POST">
         <img
           class="align-self-center mb-5"
