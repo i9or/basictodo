@@ -12,7 +12,7 @@
     "lint:fix": "eslint --fix .",
     "test": "NODE_ENV=test bun test",
     "test:coverage": "NODE_ENV=test bun test --coverage",
-    "db:migrate": "bun run migrate.ts -d db/main.db",
+    "db:migrate": "migralite -d db/main.db",
     "prepare": "bun .husky/install.ts"
   },
   "devDependencies": {
@@ -25,6 +25,7 @@
     "globals": "15.9.0",
     "husky": "9.1.4",
     "lint-staged": "15.2.8",
+    "migralite": "1.0.1",
     "pino-pretty": "11.2.2",
     "prettier": "3.3.3",
     "typed-htmx": "0.3.1",
