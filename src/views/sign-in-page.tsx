@@ -3,7 +3,7 @@ import { Layout } from "./layout.ts";
 export const SignInPage = () => (
   <Layout className="d-flex justify-content-center align-items-center py-4 bg-body-tertiary vw-100 vh-100">
     <main class="sign-in-form-container m-auto">
-      <form class="d-flex flex-column" action="/sign-in" method="POST">
+      <form class="d-flex flex-column mb-5" action="/sign-in" method="POST">
         <img
           class="align-self-center mb-5"
           width={85}
@@ -20,9 +20,9 @@ export const SignInPage = () => (
             placeholder="name@example.com"
             name="email"
           />
-          <label for="emailInput">Email address</label>
+          <label for="emailInput">Email</label>
         </div>
-        <div className="form-floating">
+        <div class="form-floating">
           <input
             id="passwordInput"
             class="form-control"
@@ -32,7 +32,7 @@ export const SignInPage = () => (
           />
           <label for="passwordInput">Password</label>
         </div>
-        <div className="form-check text-start my-3">
+        <div class="form-check text-start my-3">
           <input
             id="rememberMeCheckbox"
             class="form-check-input"
@@ -47,6 +47,9 @@ export const SignInPage = () => (
           Sign in
         </button>
       </form>
+      <p class="small">
+        Don't have an account? <a href="/sign-up">Sing up</a> instead.
+      </p>
     </main>
   </Layout>
 );

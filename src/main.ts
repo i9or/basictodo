@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { serveStatic } from "hono/bun";
+import { csrf } from "hono/csrf";
 import { html } from "hono/html";
 
 import { ENV } from "~/env.ts";
@@ -15,6 +16,13 @@ const server = new Hono();
 
 server.use(httpLogger());
 server.use("/public/*", serveStatic({ root: "./" }));
+
+server.use(
+  "*",
+  csrf({
+    origin: ["http://localhost:300"],
+  }),
+);
 
 server.route("/", authRouter);
 server.route("/", homeRouter);

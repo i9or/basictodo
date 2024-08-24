@@ -36,7 +36,7 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
-    "hono": "4.5.5",
+    "hono": "4.5.8",
     "nanoid": "5.0.7",
     "pino": "9.3.2"
   }
