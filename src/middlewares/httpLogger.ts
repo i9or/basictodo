@@ -47,7 +47,9 @@ export const httpLogger = (): MiddlewareHandler => {
     const { method } = c.req;
     const path = getRequestPath(c.req);
 
-    logger.info(
+    let severity: Severity = "debug";
+
+    logger[severity](
       {
         logId,
         method,
@@ -61,7 +63,6 @@ export const httpLogger = (): MiddlewareHandler => {
 
     await next();
 
-    let severity: Severity = "info";
     const { status, headers } = c.res;
 
     if (status >= HTTP_CLIENT_ERROR_CODES && status < HTTP_SERVER_ERROR_CODES) {

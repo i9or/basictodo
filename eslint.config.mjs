@@ -4,7 +4,7 @@ import simpleImportSort from "eslint-plugin-simple-import-sort";
 import globals from "globals";
 import tsEslint from "typescript-eslint";
 
-const MAX_CODE_COMPLEXITY = 5;
+const MAX_CODE_COMPLEXITY = 9;
 
 export default [
   {

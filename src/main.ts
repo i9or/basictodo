@@ -20,7 +20,10 @@ server.use("/public/*", serveStatic({ root: "./" }));
 server.use(
   "*",
   csrf({
-    origin: ["http://localhost:300"],
+    origin: [
+      "https://basictodo.com",
+      ...(isDevelopment() ? ["http://localhost:3000"] : []),
+    ],
   }),
 );
 

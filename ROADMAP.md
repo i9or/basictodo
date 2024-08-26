@@ -17,6 +17,7 @@
   - [x] Add test
   - [x] Add build
   - [ ] Add coverage reports on PR
-- [ ] Add database migration script
-- [ ] Add migrations generation script
-- [ ] Extract migration scripts to a package
+- [x] Add database migration script
+- [x] Add migrations generation script
+- [x] Extract migration scripts to a package
+- [ ] Add 404 page
