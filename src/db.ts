@@ -1,6 +1,8 @@
 import { Database } from "bun:sqlite";
-import { drizzle } from "drizzle-orm/bun-sqlite";
 
-const sqlite = new Database(":memory:", { create: true });
+import { ENV } from "~/env.ts";
+import { logger } from "~/utils/logger.ts";
 
-export const db = drizzle(sqlite);
+logger.info(`Using database: ${ENV.dbPath}`);
+
+export const db = new Database(ENV.dbPath, { create: true, strict: true });

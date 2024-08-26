@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from "bun:test";
 
-import { PinoMock } from "~/mocks";
-import { logger } from "~/utils/logger";
+import { PinoMock } from "~/test-utils/mocks.ts";
+import { logger } from "~/utils/logger.ts";
 
 describe("logger", () => {
   afterEach(() => {

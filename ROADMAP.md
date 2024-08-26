@@ -3,8 +3,7 @@
 - [x] Start project with Bun
 - [x] Add TypeScript
 - [x] Add web framework (Hono)
-- [x] Add DB ORM (Drizzle)
-- [ ] Code quality
+- [x] Code quality
   - [x] Add ESLint
     - [x] Add imports sorting
   - [x] Add Prettier
@@ -14,3 +13,11 @@
 - [ ] Add authentication
   - [ ] Add User entity 
   - [ ] Add sessions
+- [ ] Setup CI
+  - [x] Add test
+  - [x] Add build
+  - [ ] Add coverage reports on PR
+- [x] Add database migration script
+- [x] Add migrations generation script
+- [x] Extract migration scripts to a package
+- [ ] Add 404 page

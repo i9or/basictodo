@@ -9,7 +9,6 @@ Yet another implementation of the production ready to-do list web application us
 - Bun
 - Hono
 - htmx
-- Drizzle ORM
 - SQLite
 - Bootstrap
 

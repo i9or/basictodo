@@ -4,7 +4,7 @@ import simpleImportSort from "eslint-plugin-simple-import-sort";
 import globals from "globals";
 import tsEslint from "typescript-eslint";
 
-const MAX_CODE_COMPLEXITY = 5;
+const MAX_CODE_COMPLEXITY = 9;
 
 export default [
   {
@@ -12,7 +12,10 @@ export default [
   },
   {
     languageOptions: {
-      globals: globals.node,
+      globals: {
+        ...globals.node,
+        ...globals.browser,
+      },
     },
   },
   pluginJs.configs.recommended,
@@ -30,7 +33,6 @@ export default [
       eqeqeq: "error",
       "no-console": "error",
       "no-duplicate-imports": "error",
-      "no-magic-numbers": "error",
       "no-nested-ternary": "error",
       "no-param-reassign": "error",
       "no-return-assign": "error",

@@ -1,4 +1,4 @@
-import { Layout } from "./Layout.ts";
+import { Layout } from "./layout.ts";
 
 export const MainPage = () => (
   <Layout>
