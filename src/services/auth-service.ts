@@ -8,12 +8,14 @@ import { logger } from "~/utils/logger.ts";
 export const createAccount = async (newUser: SignUpUserDto) => {
   const hashedPassword = await Bun.password.hash(newUser.password);
   try {
-    insertNewUser({
+    const newUserId = insertNewUser({
       email: newUser.email,
       password: hashedPassword,
       firstName: newUser.firstName,
       lastName: newUser.lastName,
     });
+
+    logger.info(`New account created with id: ${newUserId}`);
 
     return true;
   } catch (err) {

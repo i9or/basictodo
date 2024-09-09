@@ -5,7 +5,7 @@ import { html } from "hono/html";
 
 import { ENV } from "~/env.ts";
 import { hotReload } from "~/hot-reload.ts";
-import { httpLogger } from "~/middlewares/httpLogger.ts";
+import { httpLogger } from "~/middlewares/http-logger.ts";
 import { authRouter } from "~/routers/auth-router.tsx";
 import { homeRouter } from "~/routers/home-router.tsx";
 import { isDevelopment } from "~/utils/environment.ts";

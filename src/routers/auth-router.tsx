@@ -1,10 +1,11 @@
 import { Hono } from "hono";
 
+import { SIGN_IN_ROUTE } from "~/routers/routes.ts";
 import {
   type SignInFormData,
-  SignInUserSchema,
+  signInUserSchema,
   type SignUpFormData,
-  SignUpUserSchema,
+  signUpUserSchema,
 } from "~/schemas/user.ts";
 import { createAccount } from "~/services/auth-service.ts";
 import { logger } from "~/utils/logger.ts";
@@ -13,12 +14,12 @@ import { SignInPage } from "~/views/sign-in-page.tsx";
 import { SignUpPage } from "~/views/sign-up-page.tsx";
 
 export const authRouter = new Hono()
-  .get("/sign-in", (c) => {
+  .get(SIGN_IN_ROUTE, (c) => {
     return c.html(<SignInPage />);
   })
-  .post("/sign-in", async (c) => {
+  .post(SIGN_IN_ROUTE, async (c) => {
     const formData = await c.req.parseBody<SignInFormData>();
-    const result = SignInUserSchema.safeParse(formData);
+    const result = signInUserSchema.safeParse(formData);
 
     if (result.success) {
       // Verify credentials
@@ -33,11 +34,11 @@ export const authRouter = new Hono()
   })
   .post("/sign-up", async (c) => {
     const formData = await c.req.parseBody<SignUpFormData>();
-    const result = SignUpUserSchema.safeParse(formData);
+    const result = signUpUserSchema.safeParse(formData);
 
     if (result.success) {
       if (await createAccount(result.data)) {
-        return c.redirect("/");
+        return c.redirect(SIGN_IN_ROUTE);
       } else {
         return c.html(<SignUpPage formData={formData} isUserExist />);
       }
@@ -64,5 +65,5 @@ export const authRouter = new Hono()
   })
   .delete("/sign-out", (c) => {
     // TODO: Sign out current user by removing session here
-    return c.redirect(`/sign-in`);
+    return c.redirect(SIGN_IN_ROUTE);
   });

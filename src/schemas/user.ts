@@ -9,7 +9,7 @@ export type SignUpFormData = {
   acceptTermsAndPrivacy?: string;
 };
 
-export const SignUpUserSchema = z
+export const signUpUserSchema = z
   .object({
     firstName: z.string().min(1).max(100),
     lastName: z.string().min(1).max(100),
@@ -31,15 +31,15 @@ export const SignUpUserSchema = z
     }
   });
 
-export type SignUpUserDto = z.infer<typeof SignUpUserSchema>;
+export type SignUpUserDto = z.infer<typeof signUpUserSchema>;
 
 export type SignInFormData = {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
   rememberMe?: string;
 };
 
-export const SignInUserSchema = z.object({
+export const signInUserSchema = z.object({
   email: z.string(),
   password: z.string(),
   rememberMe: z.preprocess((value) => value === "on", z.boolean()),
