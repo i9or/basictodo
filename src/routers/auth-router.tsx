@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 
-import { SIGN_IN_ROUTE } from "~/routers/routes.ts";
+import { HOME_ROUTE, SIGN_IN_ROUTE } from "~/routers/routes.ts";
 import {
   type SignInFormData,
   signInUserSchema,
@@ -38,7 +38,7 @@ export const authRouter = new Hono()
 
     if (result.success) {
       if (await createAccount(result.data)) {
-        return c.redirect(SIGN_IN_ROUTE);
+        return c.redirect(HOME_ROUTE);
       } else {
         return c.html(<SignUpPage formData={formData} isUserExist />);
       }

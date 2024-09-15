@@ -45,4 +45,4 @@ if (isDevelopment()) {
   hotReload();
 }
 
-logger.info(`🌭 Listening on ${serverInstance.url}`);
+logger.info(`🚀 Listening on ${serverInstance.url}`);
