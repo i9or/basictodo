@@ -1,6 +1,6 @@
 # BasicTODO
 
-<img src="public/images/logo.svg" width="100">
+<img src="public/images/logo.svg" width="100" alt="BasicTODO logo">
 
 Yet another implementation of the production ready to-do list web application using modern JavaScript tech stack.
 
@@ -29,7 +29,7 @@ bun run watch
 Production
 
 ```bash
-bun run prod
+bun run start:prod
 ```
 
 ## License
