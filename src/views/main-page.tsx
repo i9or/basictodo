@@ -1,7 +1,7 @@
-import { Layout } from "./layout";
+import type { FC } from "hono/jsx";
 
-export const MainPage = () => (
-  <Layout>
+export const MainPage: FC = () => {
+  return (
     <main class="vw-100 vh-100 d-flex justify-content-center align-items-center">
       <span class="d-flex align-items-center">
         <img
@@ -13,5 +13,5 @@ export const MainPage = () => (
         <h1 class="ms-2 my-0">BasicTODO</h1>
       </span>
     </main>
-  </Layout>
-);
+  );
+};

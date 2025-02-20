@@ -11,8 +11,10 @@
 - [x] Add Bootstrap
 - [x] Add htmx
 - [ ] Add authentication
-  - [ ] Add User entity 
-  - [ ] Add sessions
+  - [x] Add user entity 
+  - [x] Add sessions
+  - [ ] Add CSRF
+  - [ ] Add cookies
 - [ ] Setup CI
   - [x] Add test
   - [x] Add build
@@ -20,4 +22,5 @@
 - [x] Add database migration script
 - [x] Add migrations generation script
 - [x] Extract migration scripts to a package
-- [ ] Add 404 page
+- [x] Add 404 page
+- [x] Add 500 page

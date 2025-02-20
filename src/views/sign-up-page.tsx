@@ -1,24 +1,24 @@
 import { cx } from "hono/css";
+import type { FC } from "hono/jsx";
 
 import type { SignUpFormData } from "~/schemas/user-schemas";
 import { isInvalid } from "~/utils/form-validation";
 import { DangerAlert } from "~/views/components/danger-alert";
-import { Layout } from "~/views/layout";
 
-type Props = {
+type SignUpPageProps = {
   formData?: SignUpFormData;
   invalidFields?: Set<keyof SignUpFormData>;
   isUserExists?: boolean;
 };
 
-export const SignUpPage = ({
+export const SignUpPage: FC<SignUpPageProps> = ({
   formData,
   invalidFields,
   isUserExists = false,
-}: Props) => {
+}) => {
   return (
-    <Layout className="d-flex justify-content-center align-items-center py-4 bg-body-tertiary vw-100 vh-100">
-      <main class="sign-up-form-container m-auto">
+    <main class="d-flex justify-content-center align-items-center py-4 bg-body-tertiary vw-100 vh-100">
+      <div class="sign-up-form-container m-auto">
         <form action="/sign-up" method="post">
           <div class="row g-3">
             <img
@@ -150,7 +150,7 @@ export const SignUpPage = ({
             </div>
           </div>
         </form>
-      </main>
-    </Layout>
+      </div>
+    </main>
   );
 };

@@ -1,7 +1,12 @@
 import { Hono } from "hono";
 
 // import { setSignedCookie } from "hono/cookie";
-import { HOME_ROUTE, SIGN_IN_ROUTE, SIGN_UP_ROUTE } from "~/routers/routes";
+import {
+  HOME_ROUTE,
+  SIGN_IN_ROUTE,
+  SIGN_OUT_ROUTE,
+  SIGN_UP_ROUTE,
+} from "~/routers/routes";
 import {
   type SignInFormData,
   signInUserSchema,
@@ -12,12 +17,12 @@ import { createAccount } from "~/services/auth-service";
 import { logger } from "~/utils/logger";
 import { notNullNorUndefined } from "~/utils/predicates";
 import { resolveInvalidFields } from "~/utils/resolve-invalid-fields";
-import { SignInPage } from "~/views/sign-in-page";
+import { SIGN_IN_PAGE_TITLE, SignInPage } from "~/views/sign-in-page";
 import { SignUpPage } from "~/views/sign-up-page";
 
 export const authRouter = new Hono()
   .get(SIGN_IN_ROUTE, (c) => {
-    return c.html(<SignInPage />);
+    return c.render(<SignInPage />, { title: SIGN_IN_PAGE_TITLE });
   })
   .post(SIGN_IN_ROUTE, async (c) => {
     const formData = await c.req.parseBody<SignInFormData>();
@@ -27,13 +32,15 @@ export const authRouter = new Hono()
       // TODO: Verify credentials
       //       Set cookie
       //       Redirect to main page
-      return c.html(<SignInPage />);
+      return c.render(<SignInPage />, { title: SIGN_IN_PAGE_TITLE });
     }
 
-    return c.html(<SignInPage isWrongCredentials formData={formData} />);
+    return c.render(<SignInPage isWrongCredentials formData={formData} />, {
+      title: SIGN_IN_PAGE_TITLE,
+    });
   })
   .get(SIGN_UP_ROUTE, (c) => {
-    return c.html(<SignUpPage />);
+    return c.render(<SignUpPage />);
   })
   .post(SIGN_UP_ROUTE, async (c) => {
     const formData = await c.req.parseBody<SignUpFormData>();
@@ -42,7 +49,7 @@ export const authRouter = new Hono()
     if (result.success) {
       const { newUserId, isUserExist } = await createAccount(result.data);
       if (isUserExist) {
-        return c.html(<SignUpPage formData={formData} isUserExists />);
+        return c.render(<SignUpPage formData={formData} isUserExists />);
       }
 
       if (notNullNorUndefined(newUserId)) {
@@ -80,7 +87,7 @@ export const authRouter = new Hono()
         "Failed sign up form validation",
       );
 
-      return c.html(
+      return c.render(
         <SignUpPage
           formData={formData}
           invalidFields={resolveInvalidFields(result.error)}
@@ -88,7 +95,7 @@ export const authRouter = new Hono()
       );
     }
   })
-  .delete("/sign-out", (c) => {
+  .post(SIGN_OUT_ROUTE, (c) => {
     // TODO: Sign out current user by removing session here
-    return c.redirect(SIGN_IN_ROUTE);
+    return c.text(HOME_ROUTE);
   });

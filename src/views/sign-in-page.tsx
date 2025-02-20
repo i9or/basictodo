@@ -1,20 +1,22 @@
+import type { FC } from "hono/jsx";
+
 import type { SignInFormData } from "~/schemas/user-schemas";
 import { notNullNorUndefined } from "~/utils/predicates";
 import { DangerAlert } from "~/views/components/danger-alert";
 
-import { Layout } from "./layout";
+export const SIGN_IN_PAGE_TITLE = "Sign In";
 
-type Props = {
+type SignInPageProps = {
   isWrongCredentials?: boolean;
   formData?: SignInFormData;
 };
 
-export const SignInPage = ({ isWrongCredentials, formData }: Props) => (
-  <Layout
-    className="d-flex justify-content-center align-items-center py-4 bg-body-tertiary vw-100 vh-100"
-    title="Sign In"
-  >
-    <main class="sign-in-form-container m-auto">
+export const SignInPage: FC<SignInPageProps> = ({
+  isWrongCredentials,
+  formData,
+}) => (
+  <main class="d-flex justify-content-center align-items-center py-4 bg-body-tertiary vw-100 vh-100">
+    <div class="sign-in-form-container m-auto">
       <form action="/sign-in" method="post">
         <div class="row g-3">
           <img
@@ -85,6 +87,6 @@ export const SignInPage = ({ isWrongCredentials, formData }: Props) => (
           </div>
         </div>
       </form>
-    </main>
-  </Layout>
+    </div>
+  </main>
 );
