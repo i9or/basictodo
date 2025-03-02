@@ -27,7 +27,7 @@ export const MainPage: FC = () => {
       </nav>
 
       <main class="container flex-grow-1 d-flex align-items-center">
-        <div class="col-6 fade-in">
+        <div class="col-6">
           <h1 class="display-3 text-white mb-4">Todo List, Simplified.</h1>
           <p class="lead text-light mb-5">
             Experience the most intuitive and privacy-focused todo app.
@@ -70,7 +70,7 @@ export const MainPage: FC = () => {
         </div>
 
         <div
-          class="col-6 d-flex align-items-center justify-content-center fade-in"
+          class="col-6 d-flex align-items-center justify-content-center"
           style="animation-delay: 0.3s;"
         >
           <img
