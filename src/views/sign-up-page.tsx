@@ -3,6 +3,7 @@ import type { FC } from "hono/jsx";
 
 import type { SignUpFormData } from "~/schemas/user-schemas";
 import { isInvalid } from "~/utils/form-validation";
+import { CsrfToken } from "~/views/components/csrf-token";
 import { DangerAlert } from "~/views/components/danger-alert";
 
 type SignUpPageProps = {
@@ -20,6 +21,7 @@ export const SignUpPage: FC<SignUpPageProps> = ({
     <main class="d-flex justify-content-center align-items-center py-4 bg-body-tertiary vw-100 vh-100">
       <div class="sign-up-form-container m-auto">
         <form action="/sign-up" method="post">
+          <CsrfToken />
           <div class="row g-3">
             <img
               class="align-self-center mb-4"

@@ -1,7 +1,10 @@
 import { Hono } from "hono";
+import { getSignedCookie } from "hono/cookie";
+import { createMiddleware } from "hono/factory";
 
-// import { setSignedCookie } from "hono/cookie";
+import { ENV } from "~/env";
 import {
+  DASHBOARD_ROUTE,
   HOME_ROUTE,
   SIGN_IN_ROUTE,
   SIGN_OUT_ROUTE,
@@ -13,14 +16,54 @@ import {
   type SignUpFormData,
   signUpUserSchema,
 } from "~/schemas/user-schemas";
-import { createAccount } from "~/services/auth-service";
+import { authenticate, createAccount } from "~/services/auth-service";
+import {
+  createSession,
+  deleteSession,
+  deleteSessionTokenCookie,
+  getSessionTokenCookie,
+  SESSION_TOKEN_COOKIE,
+  setSessionTokenCookie,
+} from "~/services/sessions-service";
+import { generateToken } from "~/utils/generate-token";
 import { logger } from "~/utils/logger";
 import { notNullNorUndefined } from "~/utils/predicates";
 import { resolveInvalidFields } from "~/utils/resolve-invalid-fields";
 import { SIGN_IN_PAGE_TITLE, SignInPage } from "~/views/sign-in-page";
 import { SignUpPage } from "~/views/sign-up-page";
+import { SignUpSuccessPage } from "~/views/sign-up-success-page";
 
 export const authRouter = new Hono()
+  .post(SIGN_OUT_ROUTE, async (c) => {
+    const sessionToken = await getSessionTokenCookie(c);
+
+    if (notNullNorUndefined(sessionToken) && sessionToken !== false) {
+      deleteSession(sessionToken);
+      deleteSessionTokenCookie(c);
+      c.set("user", undefined); // just in case
+    }
+
+    return c.redirect(HOME_ROUTE);
+  })
+  .use(
+    createMiddleware(async (c, next) => {
+      const sessionToken = await getSignedCookie(
+        c,
+        ENV.secret,
+        SESSION_TOKEN_COOKIE,
+      );
+
+      if (notNullNorUndefined(sessionToken)) {
+        logger.warn(
+          "User tried to access authentication router while being authenticated",
+        );
+
+        return c.redirect(DASHBOARD_ROUTE);
+      }
+
+      return await next();
+    }),
+  )
   .get(SIGN_IN_ROUTE, (c) => {
     return c.render(<SignInPage />, { title: SIGN_IN_PAGE_TITLE });
   })
@@ -29,10 +72,20 @@ export const authRouter = new Hono()
     const result = signInUserSchema.safeParse(formData);
 
     if (result.success) {
-      // TODO: Verify credentials
-      //       Set cookie
-      //       Redirect to main page
-      return c.render(<SignInPage />, { title: SIGN_IN_PAGE_TITLE });
+      const { user } = await authenticate(
+        result.data.email,
+        result.data.password,
+      );
+
+      if (notNullNorUndefined(user)) {
+        const token = generateToken();
+        const session = createSession(token, user.id);
+
+        // TODO: check "remember me" flag
+        await setSessionTokenCookie(c, token, session.expiresAt);
+
+        return c.redirect(DASHBOARD_ROUTE);
+      }
     }
 
     return c.render(<SignInPage isWrongCredentials formData={formData} />, {
@@ -53,27 +106,10 @@ export const authRouter = new Hono()
       }
 
       if (notNullNorUndefined(newUserId)) {
-        // await setSignedCookie(
-        //   c,
-        //   "signedInUser",
-        //   `${newUserId}`,
-        //   "sUpErSeCrEt/123!",
-        //   {
-        //     path: "/",
-        //     secure: true,
-        //     httpOnly: true,
-        //     sameSite: "Strict",
-        //     maxAge: 399 * 24 * 60 * 60, // 399 days in seconds
-        //     expires: new Date(new Date().getTime() + 399 * 24 * 60 * 60 * 1000),
-        //   },
-        // );
-      } else {
-        throw new Error(
-          "Something went wrong, received undefined newUserId...",
-        );
+        return c.render(<SignUpSuccessPage />);
       }
 
-      return c.redirect(HOME_ROUTE);
+      throw new Error("Something went wrong, received undefined newUserId...");
     } else {
       logger.error(
         {
@@ -94,8 +130,4 @@ export const authRouter = new Hono()
         />,
       );
     }
-  })
-  .post(SIGN_OUT_ROUTE, (c) => {
-    // TODO: Sign out current user by removing session here
-    return c.text(HOME_ROUTE);
   });

@@ -5,7 +5,11 @@ export const userSchema = z.object({
   email: z.string().nonempty(),
   firstName: z.string().nonempty(),
   lastName: z.string().nonempty(),
-  password: z.string().nonempty().optional(),
+});
+
+export const userWithPasswordSchema = userSchema.extend({
+  password: z.string().nonempty(),
 });
 
 export type User = z.infer<typeof userSchema>;
+export type UserWithPassword = z.infer<typeof userWithPasswordSchema>;

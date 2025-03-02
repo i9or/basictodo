@@ -1,4 +1,5 @@
-import type { HonoRequest, MiddlewareHandler } from "hono";
+import type { HonoRequest } from "hono";
+import { createMiddleware } from "hono/factory";
 import { nanoid } from "nanoid";
 
 import {
@@ -39,8 +40,8 @@ const elapsedFormatted = (start: number) => {
   ]);
 };
 
-export const httpLogger = (): MiddlewareHandler => {
-  return async function (c, next) {
+export const httpLogger = createMiddleware(
+  async function httpLoggerMiddleware(c, next) {
     const logId = nanoid();
     c.set("logId", logId);
 
@@ -82,5 +83,5 @@ export const httpLogger = (): MiddlewareHandler => {
       },
       "RESPONSE",
     );
-  };
-};
+  },
+);

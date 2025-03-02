@@ -2,6 +2,7 @@ import type { FC } from "hono/jsx";
 
 import type { SignInFormData } from "~/schemas/user-schemas";
 import { notNullNorUndefined } from "~/utils/predicates";
+import { CsrfToken } from "~/views/components/csrf-token";
 import { DangerAlert } from "~/views/components/danger-alert";
 
 export const SIGN_IN_PAGE_TITLE = "Sign In";
@@ -18,6 +19,7 @@ export const SignInPage: FC<SignInPageProps> = ({
   <main class="d-flex justify-content-center align-items-center py-4 bg-body-tertiary vw-100 vh-100">
     <div class="sign-in-form-container m-auto">
       <form action="/sign-in" method="post">
+        <CsrfToken />
         <div class="row g-3">
           <img
             class="align-self-center mb-4"
@@ -61,7 +63,7 @@ export const SignInPage: FC<SignInPageProps> = ({
             <div class="form-check text-start">
               <input
                 id="rememberMeCheckbox"
-                class="form-check-input"
+                class="form-check-input disabled"
                 type="checkbox"
                 name="rememberMe"
                 checked={
@@ -69,8 +71,9 @@ export const SignInPage: FC<SignInPageProps> = ({
                     ? formData.rememberMe === "on"
                     : true
                 }
+                disabled
               />
-              <label class="form-check-label" for="rememberMeCheckbox">
+              <label class="form-check-label disabled" for="rememberMeCheckbox">
                 Remember me
               </label>
             </div>

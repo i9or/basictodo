@@ -1,9 +1,13 @@
 import { SQLiteError } from "bun:sqlite";
 
 import { SQLITE_CONSTRAINT_UNIQUE } from "~/constants";
-import { insertNewUser } from "~/repositories/users-repository";
+import {
+  insertNewUser,
+  selectUserByEmail,
+} from "~/repositories/users-repository";
 import type { SignUpUserDto } from "~/schemas/user-schemas";
 import { logger } from "~/utils/logger";
+import { isNullOrUndefined } from "~/utils/predicates";
 
 export const createAccount = async (newUser: SignUpUserDto) => {
   const hashedPassword = await Bun.password.hash(newUser.password);
@@ -19,11 +23,31 @@ export const createAccount = async (newUser: SignUpUserDto) => {
 
     return { newUserId };
   } catch (err) {
-    logger.error(err);
+    logger.error({ err }, "Creating new account failed");
 
     if (err instanceof SQLiteError && err.code === SQLITE_CONSTRAINT_UNIQUE) {
       return { isUserExist: true };
     }
+
+    throw err;
+  }
+};
+
+export const authenticate = async (email: string, password: string) => {
+  try {
+    const user = selectUserByEmail({ email });
+
+    if (isNullOrUndefined(user)) {
+      return { user: null };
+    }
+
+    if (await Bun.password.verify(password, user.password)) {
+      return { user };
+    }
+
+    return { user: null };
+  } catch (err) {
+    logger.error({ err }, "Authentication failed");
 
     throw err;
   }

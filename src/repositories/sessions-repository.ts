@@ -21,6 +21,10 @@ type UpdateSessionExpiryDateByIdParams = {
   newExpiresAt: number;
 };
 
+type DeleteAllSessionsByUserIdParams = {
+  userId: string;
+};
+
 // TODO: construct type from existing entities
 type SessionAndUserResult = {
   sessionId: string;
@@ -55,6 +59,11 @@ const deleteSessionByIdQuery = db.query<never, DeleteSessionByIdParams>(
   `delete from sessions where id = $sessionId`,
 );
 
+const deleteAllSessionsByUserIdQuery = db.query<
+  never,
+  DeleteAllSessionsByUserIdParams
+>(`delete from sessions where user_id = $userId`);
+
 const updateSessionExpiryDateByIdQuery = db.query<
   never,
   UpdateSessionExpiryDateByIdParams
@@ -71,7 +80,7 @@ export const insertNewSession = ({
     expiresAt,
   });
 
-  return lastInsertRowid;
+  return lastInsertRowid as number;
 };
 
 export const selectSessionAndUserBySessionId = ({
@@ -118,4 +127,12 @@ export const updateSessionExpiryDateById = ({
   });
 
   return changes === 1;
+};
+
+export const deleteAllSessionsByUserId = ({
+  userId,
+}: DeleteAllSessionsByUserIdParams) => {
+  const { changes } = deleteAllSessionsByUserIdQuery.run({ userId });
+
+  return changes > 0;
 };

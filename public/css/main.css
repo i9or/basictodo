@@ -6,3 +6,35 @@
 .sidebar {
   width: 280px;
 }
+
+.main-page {
+  min-height: 100vh;
+  background: linear-gradient(
+    45deg,
+    hsl(214, 60%, 29%) 0%,
+    hsl(217, 57%, 57%) 100%
+  );
+
+  & .fade-in {
+    animation: fadeIn 1s ease-in;
+  }
+
+  & .hover-grow {
+    transition: transform 0.2s ease;
+  }
+
+  & .hover-grow:hover {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

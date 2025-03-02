@@ -11,7 +11,9 @@ import { TermsOfUsePage } from "~/views/terms-of-use-page";
 
 export const homeRouter = new Hono()
   .get(HOME_ROUTE, (c) => {
-    return c.render(<MainPage />);
+    return c.render(<MainPage />, {
+      className: "d-flex flex-column vh-100 main-page",
+    });
   })
   .get(TERMS_OF_USE_ROUTE, (c) => {
     return c.render(<TermsOfUsePage />, { title: "Terms of Use" });

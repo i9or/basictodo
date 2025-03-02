@@ -1,6 +1,8 @@
 import { WebSocketServer } from "ws";
 import "typed-htmx";
 
+import type { User } from "~/models/user";
+
 declare global {
   var wss: WebSocketServer | undefined;
 
@@ -19,5 +21,6 @@ declare module "hono" {
 
   interface ContextVariableMap {
     csrfToken: string;
+    user: User | undefined;
   }
 }
