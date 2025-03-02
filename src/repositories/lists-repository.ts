@@ -1,4 +1,4 @@
-// import { db } from "~/db.ts";
+// import { db } from "~/db";
 
 // TODO: add proper types
 export const selectAllLists = (

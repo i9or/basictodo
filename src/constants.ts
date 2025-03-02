@@ -6,6 +6,8 @@ export const ONE_SECOND_IN_MS = 1000;
 export const HTTP_CLIENT_ERROR_CODES = 400;
 export const HTTP_SERVER_ERROR_CODES = 500;
 export const HTTP_NOT_FOUND = 404;
+export const HTTP_FORBIDDEN = 403;
+export const HTTP_UNAUTHORIZED = 401;
 
 export const WEBSITE_NAME = "BasicTODO";
 

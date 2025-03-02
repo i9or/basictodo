@@ -2,6 +2,6 @@
 exact = true
 
 [test]
-preload = ["./src/testUtils/mocks"]
+preload = ["./src/test-utils/mocks"]
 # TODO: enable once coverage ignore patterns are merged to the Bun test runner
 #coverageThreshold = 0.8

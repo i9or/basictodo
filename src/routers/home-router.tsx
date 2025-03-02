@@ -1,16 +1,23 @@
 import { Hono } from "hono";
 
-import { MainPage } from "~/views/main-page.tsx";
-import { PrivacyPolicyPage } from "~/views/privacy-policy-page.tsx";
-import { TermsOfUsePage } from "~/views/terms-of-use-page.tsx";
+import {
+  HOME_ROUTE,
+  PRIVACY_POLICY_ROUTE,
+  TERMS_OF_USE_ROUTE,
+} from "~/routers/routes";
+import { MainPage } from "~/views/main-page";
+import { PrivacyPolicyPage } from "~/views/privacy-policy-page";
+import { TermsOfUsePage } from "~/views/terms-of-use-page";
 
 export const homeRouter = new Hono()
-  .get("/", (c) => {
-    return c.html(<MainPage />);
+  .get(HOME_ROUTE, (c) => {
+    return c.render(<MainPage />, {
+      className: "d-flex flex-column vh-100 main-page",
+    });
   })
-  .get("/terms-of-use", (c) => {
-    return c.html(<TermsOfUsePage />);
+  .get(TERMS_OF_USE_ROUTE, (c) => {
+    return c.render(<TermsOfUsePage />, { title: "Terms of Use" });
   })
-  .get("/privacy-policy", (c) => {
-    return c.html(<PrivacyPolicyPage />);
+  .get(PRIVACY_POLICY_ROUTE, (c) => {
+    return c.render(<PrivacyPolicyPage />, { title: "Privacy Policy" });
   });

@@ -4,28 +4,29 @@
   "type": "module",
   "scripts": {
     "start": "bun src/main.ts",
+    "start:prod": "cross-env BUN_ENV=production bun start",
     "watch:server": "bun --hot --no-clear-screen src/main.ts",
     "watch:types": "bun run type-check --watch --preserveWatchOutput",
     "watch": "concurrently --names \"SERVER,TYPES,STYLES\" -c \"green.bold,blue.bold,yellow.bold\" \"bun:watch:server\" \"bun:watch:types\"",
     "type-check": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "test": "NODE_ENV=test bun test",
-    "test:coverage": "NODE_ENV=test bun test --coverage",
+    "test": "BUN_ENV=test bun test",
+    "test:coverage": "BUN_ENV=test bun test --coverage",
     "db:migrate": "migralite -d db/main.sqlite",
     "prepare": "bun .husky/install.ts"
   },
   "devDependencies": {
-    "@eslint/js": "9.9.0",
-    "@types/bun": "1.1.6",
-    "concurrently": "8.2.2",
-    "eslint": "8.57.0",
-    "eslint-config-prettier": "9.1.0",
+    "@eslint/js": "9.20.0",
+    "@types/bun": "1.2.2",
+    "concurrently": "9.1.2",
+    "eslint": "9.20.0",
+    "eslint-config-prettier": "10.0.1",
     "eslint-plugin-simple-import-sort": "12.1.1",
-    "globals": "15.9.0",
-    "husky": "9.1.4",
-    "lint-staged": "15.2.8",
-    "migralite": "1.0.1",
+    "globals": "15.14.0",
+    "husky": "9.1.7",
+    "lint-staged": "15.2.11",
+    "migralite": "1.1.1",
     "pino-pretty": "11.2.2",
     "prettier": "3.3.3",
     "typed-htmx": "0.3.1",
@@ -33,12 +34,15 @@
     "ws": "8.18.0"
   },
   "peerDependencies": {
-    "typescript": "5.5.4"
+    "typescript": "5.7.3"
   },
   "dependencies": {
-    "hono": "4.5.8",
-    "nanoid": "5.0.7",
-    "pino": "9.3.2",
-    "zod": "3.23.8"
+    "@oslojs/crypto": "1.0.1",
+    "@oslojs/encoding": "1.1.0",
+    "cross-env": "7.0.3",
+    "hono": "4.7.1",
+    "nanoid": "5.0.9",
+    "pino": "9.6.0",
+    "zod": "3.24.1"
   }
 }

@@ -1,20 +1,25 @@
-import type { SignInFormData } from "~/schemas/user.ts";
-import { DangerAlert } from "~/views/components/danger-alert.tsx";
+import type { FC } from "hono/jsx";
 
-import { Layout } from "./layout.ts";
+import type { SignInFormData } from "~/schemas/user-schemas";
+import { notNullNorUndefined } from "~/utils/predicates";
+import { CsrfToken } from "~/views/components/csrf-token";
+import { DangerAlert } from "~/views/components/danger-alert";
 
-type Props = {
+export const SIGN_IN_PAGE_TITLE = "Sign In";
+
+type SignInPageProps = {
   isWrongCredentials?: boolean;
   formData?: SignInFormData;
 };
 
-export const SignInPage = ({ isWrongCredentials, formData }: Props) => (
-  <Layout
-    className="d-flex justify-content-center align-items-center py-4 bg-body-tertiary vw-100 vh-100"
-    title="Sign In"
-  >
-    <main class="sign-in-form-container m-auto">
-      <form action="/sign-in" method="POST">
+export const SignInPage: FC<SignInPageProps> = ({
+  isWrongCredentials,
+  formData,
+}) => (
+  <main class="d-flex justify-content-center align-items-center py-4 bg-body-tertiary vw-100 vh-100">
+    <div class="sign-in-form-container m-auto">
+      <form action="/sign-in" method="post">
+        <CsrfToken />
         <div class="row g-3">
           <img
             class="align-self-center mb-4"
@@ -58,12 +63,17 @@ export const SignInPage = ({ isWrongCredentials, formData }: Props) => (
             <div class="form-check text-start">
               <input
                 id="rememberMeCheckbox"
-                class="form-check-input"
+                class="form-check-input disabled"
                 type="checkbox"
                 name="rememberMe"
-                checked={formData?.rememberMe === "on"}
+                checked={
+                  notNullNorUndefined(formData)
+                    ? formData.rememberMe === "on"
+                    : true
+                }
+                disabled
               />
-              <label class="form-check-label" for="rememberMeCheckbox">
+              <label class="form-check-label disabled" for="rememberMeCheckbox">
                 Remember me
               </label>
             </div>
@@ -80,6 +90,6 @@ export const SignInPage = ({ isWrongCredentials, formData }: Props) => (
           </div>
         </div>
       </form>
-    </main>
-  </Layout>
+    </div>
+  </main>
 );

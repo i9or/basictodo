@@ -6,3 +6,20 @@
 .sidebar {
   width: 280px;
 }
+
+.main-page {
+  min-height: 100vh;
+  background: linear-gradient(
+    45deg,
+    hsl(214, 60%, 29%) 0%,
+    hsl(217, 57%, 57%) 100%
+  );
+
+  & .hover-grow {
+    transition: transform 0.2s ease;
+  }
+
+  & .hover-grow:hover {
+    transform: scale(1.05);
+  }
+}

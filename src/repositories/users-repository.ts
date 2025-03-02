@@ -1,4 +1,5 @@
-import { db } from "~/db.ts";
+import { db } from "~/db";
+import type { UserWithPassword } from "~/models/user";
 
 type InsertNewUserParams = {
   email: string;
@@ -7,10 +8,19 @@ type InsertNewUserParams = {
   lastName: string;
 };
 
+type SelectUserByEmailParams = {
+  email: string;
+};
+
 const insertNewUserQuery = db.query<never, InsertNewUserParams>(
   `insert into users (email, password, first_name, last_name)
    values ($email, $password, $firstName, $lastName)`,
 );
+
+const selectUserByEmailQuery = db.query<
+  UserWithPassword,
+  SelectUserByEmailParams
+>(`select * from users where email = $email`);
 
 export const insertNewUser = ({
   email,
@@ -18,10 +28,18 @@ export const insertNewUser = ({
   firstName,
   lastName,
 }: InsertNewUserParams) => {
-  insertNewUserQuery.run({
+  const { lastInsertRowid } = insertNewUserQuery.run({
     email,
     password,
     firstName,
     lastName,
+  });
+
+  return lastInsertRowid as number;
+};
+
+export const selectUserByEmail = ({ email }: SelectUserByEmailParams) => {
+  return selectUserByEmailQuery.get({
+    email,
   });
 };

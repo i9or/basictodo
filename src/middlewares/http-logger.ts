@@ -1,4 +1,5 @@
-import type { HonoRequest, MiddlewareHandler } from "hono";
+import type { HonoRequest } from "hono";
+import { createMiddleware } from "hono/factory";
 import { nanoid } from "nanoid";
 
 import {
@@ -6,8 +7,8 @@ import {
   HTTP_SERVER_ERROR_CODES,
   NOT_FOUND_INDEX,
   ONE_SECOND_IN_MS,
-} from "~/constants.ts";
-import { logger, type Severity } from "~/utils/logger.ts";
+} from "~/constants";
+import { logger, type Severity } from "~/utils/logger";
 
 const MINIMUM_POSITION = 8;
 
@@ -39,15 +40,15 @@ const elapsedFormatted = (start: number) => {
   ]);
 };
 
-export const httpLogger = (): MiddlewareHandler => {
-  return async function (c, next) {
+export const httpLogger = createMiddleware(
+  async function httpLoggerMiddleware(c, next) {
     const logId = nanoid();
     c.set("logId", logId);
 
     const { method } = c.req;
     const path = getRequestPath(c.req);
 
-    let severity: Severity = "debug";
+    let severity: Severity = "trace";
 
     logger[severity](
       {
@@ -82,5 +83,5 @@ export const httpLogger = (): MiddlewareHandler => {
       },
       "RESPONSE",
     );
-  };
-};
+  },
+);
